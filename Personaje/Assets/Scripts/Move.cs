@@ -3,28 +3,39 @@ using System.Collections;
 
 public class Move : MonoBehaviour {
 	public float speed;
+	public float dir;
 	// Use this for initialization
 	void Start () {
-		speed = 20;
+		speed = 3;
+		dir = 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//moveForward ();
+		if(this.transform.position.x<-10)
+		{
+			dir=1;
+		}
+		if(this.transform.position.x>10)
+		{
+			dir=-1;
+		}
+		moverSiempre ();
 	}
 	//funcion que mueve al personaje
 	public void moveLe()
 	{
-		//Debug.Log ("Hola ");
-		//Mover posicion de forma constante
-		//Vector3.down
-		this.transform.Translate( (Time.deltaTime * speed) * Vector3.left);
+		dir = -1;
 	}
 	//funcion que mueve al personaje
 	public void moveR()
 	{
-		//Debug.Log ("Hola ");
-		//Mover posicion de forma constante
-		this.transform.Translate( (Time.deltaTime * speed) * Vector3.right);
+		dir = 1;
 	}
+	//funcion paramoverse siempre
+	public void moverSiempre()
+	{
+		this.transform.Translate ((Time.deltaTime * speed * dir) * Vector3.right);
+	}
+
 }
